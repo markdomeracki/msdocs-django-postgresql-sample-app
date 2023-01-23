@@ -30,7 +30,7 @@ class Project(models.Model):
     project_id = models.TextField(db_column='project_ID', primary_key=True)  # Field name made lowercase.
     project_type = models.TextField(blank=True, null=True)
     screening_start_date = models.TextField(blank=True, null=True)
-    sample_count = models.FloatField(blank=True, null=True)
+    sample_count = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = True
