@@ -7,13 +7,14 @@ from django.utils import timezone
 
 from restaurant_review.models import Restaurant, Review
 
+
 # Create your views here.
 
 def index(request):
     print('Request for index page received')
 
     restaurants = Restaurant.objects.annotate(avg_rating=Avg('review__rating')).annotate(review_count=Count('review'))
-    return render(request, 'restaurant_review/index.html', {'restaurants': restaurants })
+    return render(request, 'restaurant_review/index.html', {'restaurants': restaurants})
 
 
 def details(request, id):
@@ -21,9 +22,7 @@ def details(request, id):
 
     restaurant = get_object_or_404(Restaurant, pk=id)
 
-
     return render(request, 'restaurant_review/details.html', {'restaurant': restaurant})
-
 
 
 def create_restaurant(request):
@@ -49,7 +48,7 @@ def add_restaurant(request):
         restaurant.street_address = street_address
         restaurant.description = description
         Restaurant.save(restaurant)
-                
+
         return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
 
 
@@ -61,7 +60,7 @@ def add_review(request, id):
         rating = request.POST['rating']
         review_text = request.POST['review_text']
     except (KeyError):
-        #Redisplay the question voting form.
+        # Redisplay the question voting form.
         return render(request, 'restaurant_review/add_review.html', {
             'error_message': "Error adding review",
         })
@@ -73,5 +72,5 @@ def add_review(request, id):
         review.rating = rating
         review.review_text = review_text
         Review.save(review)
-                
-    return HttpResponseRedirect(reverse('details', args=(id,)))        
+
+    return HttpResponseRedirect(reverse('details', args=(id,)))

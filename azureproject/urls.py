@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
+    path('csv/', include('upload_csv.urls')),
 ]

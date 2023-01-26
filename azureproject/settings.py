@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'rest_framework.authtoken',
+    'upload_csv',
 ]
 
 MIDDLEWARE = [
@@ -81,9 +82,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated'
-    )
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated'
+    # )
 }
 
 WSGI_APPLICATION = 'azureproject.wsgi.application'
