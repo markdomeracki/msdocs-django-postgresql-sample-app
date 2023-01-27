@@ -21,7 +21,7 @@ class UploadViewSet(ViewSet):
 
     def create(self, request):
         data_list = []
-        file_uploaded = request.FILES.get('file_uploaded')
+        file_uploaded = request.FILES.get('file_upload')
         print(exists('temp/temp.csv'))
         if exists('temp/temp.csv'):
             os.remove('temp/temp.csv')
@@ -45,21 +45,21 @@ def add_data_from_csv(file):
             print(row)
 
             or_ = ComboCSVData(
-                OR=row[1],
-                conc=row[2],
-                Firefly=row[3],
-                Renilla=row[4],
-                Normalized=row[5],
+                ar=row[1],
+                concentration=row[2],
+                # Firefly=row[3],
+                # Renilla=row[4],
+                # Normalized=row[5],
                 Project=row[6],
-                Plate=row[7],
-                Row=row[8],
-                Column=row[9],
-                Renilla_bgnorm=row[10],
-                Firefly_bgnorm=row[11],
-                Background_Subtracted=row[12],
-                Background_Divided=[13],
-                Plate_type=row[14],
-                Exp_datetime=row[15],
+                # Plate=row[7],
+                # Row=row[8],
+                # Column=row[9],
+                # Renilla_bgnorm=row[10],
+                # Firefly_bgnorm=row[11],
+                # Background_Subtracted=row[12],
+                # Background_Divided=[13],
+                # Plate_type=row[14],
+                # Exp_datetime=row[15],
 
             )
             or_.save()
