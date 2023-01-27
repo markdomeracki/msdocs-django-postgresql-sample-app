@@ -1,15 +1,22 @@
 from django.db import models
 
 
-class ProjectCsv(models.Model):
-    project_id = models.CharField(primary_key=True, max_length=50)
-    project_type = models.CharField(max_length=50)
-    screening_start_date = models.CharField(max_length=50)
-    sample_count = models.IntegerField()
+# TODO 	OR	conc	Firefly	Renilla	Normalized	Project	Plate	Row	Column	Renilla_bgnorm	Firefly_bgnorm
+#  Background_Subtracted	Background_Divided	plate-type	exp datetime
 
-    # project = {
-    #     'project_id': '2',
-    #     'Project_type': '2',
-    #     'screening_start_date': '2',
-    #     'sample_count': '2',
-    # }
+class ComboCSVData(models.Model):
+    OR = models.CharField(max_length=100)
+    conc = models.CharField(max_length=100)
+    Project = models.CharField(max_length=100)
+    Plate = models.CharField(max_length=100)
+    Row = models.CharField(max_length=100)
+    Plate_type = models.CharField(max_length=100)
+    Exp_datetime = models.CharField(max_length=100)  # TODO Will need to figure this out.
+    Column = models.FloatField()
+    Renilla_bgnorm = models.FloatField()
+    Firefly_bgnorm = models.FloatField()
+    Background_Subtracted = models.FloatField()
+    Background_Divided = models.FloatField()
+    Firefly = models.FloatField()
+    Renilla = models.FloatField()
+    Normalized = models.FloatField()

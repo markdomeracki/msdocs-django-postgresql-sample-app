@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'rest_framework',
-    'api.apps.ApiConfig',
     'rest_framework.authtoken',
     'upload_csv',
 ]
