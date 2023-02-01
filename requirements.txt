@@ -1,5 +1,4 @@
 anyio==3.6.2
-aromyxapi @ file:///Users/markdomeracki/Desktop/repos/msdocs-django-postgresql-sample-app/module/aromyxapi
 asgiref==3.6.0
 attrs==22.2.0
 backoff==1.11.1
