@@ -134,3 +134,5 @@ dmypy.json
 .bin/
 pyvenv.cfg
 .vscode/
+
+db 2.sqlite3

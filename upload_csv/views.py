@@ -10,7 +10,7 @@ import os
 import pandas as pd
 
 from .serializer import UploadSerializer
-from module.aromyxapi.aromyxapi.Airtable import airtable
+# from module.aromyxapi.aromyxapi.Airtable import airtable
 
 fs = FileSystemStorage(location='temp/')
 
@@ -58,37 +58,37 @@ class UploadViewSet(ViewSet):
         return Response(response)
 
 
-def convert_AR_names(df_combo: pd.DataFrame) -> pd.DataFrame:
-    df_combo.rename(columns={'OR': 'AR'}, inplace=True)
-
-    receptor_dict = {}
-    for AR in df_combo['AR'].unique():
-        if AR[0:2] == 'AR':
-            if airtable.get_OR_from_AR(AR) != 'unmapped':
-                receptor_dict[AR] = airtable.get_OR_from_AR(AR)
-            else:
-                receptor_dict[AR] = AR
-        else:
-            receptor_dict[AR] = AR
-
-    # add receptor name column
-    df_combo['receptor_name'] = df_combo['AR']
-    df_combo.replace({'receptor_name': receptor_dict}, inplace=True)
-
-    # create dict to convert receptor names to ARs
-    AR_dict = {}
-    for receptor in df_combo['receptor_name'].unique():
-        if (receptor[0:3] == 'TAS') or (receptor[0:2] == 'OR'):
-            if airtable.get_AR_from_OR(receptor) != 'unmapped':
-                AR_dict[receptor] = airtable.get_AR_from_OR(receptor)
-            else:
-                AR_dict[receptor] = receptor
-        else:
-            AR_dict[receptor] = receptor
-
-    # replace convert ARs
-    df_combo.replace({'AR': AR_dict}, inplace=True)
-    return df_combo
+# def convert_AR_names(df_combo: pd.DataFrame) -> pd.DataFrame:
+#     df_combo.rename(columns={'OR': 'AR'}, inplace=True)
+#
+#     receptor_dict = {}
+#     for AR in df_combo['AR'].unique():
+#         if AR[0:2] == 'AR':
+#             if airtable.get_OR_from_AR(AR) != 'unmapped':
+#                 receptor_dict[AR] = airtable.get_OR_from_AR(AR)
+#             else:
+#                 receptor_dict[AR] = AR
+#         else:
+#             receptor_dict[AR] = AR
+#
+#     # add receptor name column
+#     df_combo['receptor_name'] = df_combo['AR']
+#     df_combo.replace({'receptor_name': receptor_dict}, inplace=True)
+#
+#     # create dict to convert receptor names to ARs
+#     AR_dict = {}
+#     for receptor in df_combo['receptor_name'].unique():
+#         if (receptor[0:3] == 'TAS') or (receptor[0:2] == 'OR'):
+#             if airtable.get_AR_from_OR(receptor) != 'unmapped':
+#                 AR_dict[receptor] = airtable.get_AR_from_OR(receptor)
+#             else:
+#                 AR_dict[receptor] = receptor
+#         else:
+#             AR_dict[receptor] = receptor
+#
+#     # replace convert ARs
+#     df_combo.replace({'AR': AR_dict}, inplace=True)
+#     return df_combo
 
 
 def prepare_combo_csv(combo_path, result_folder):
@@ -97,7 +97,7 @@ def prepare_combo_csv(combo_path, result_folder):
     print(df_combo)
 
     # convert to/from AR_names
-    df_combo = convert_AR_names(df_combo)
+    # df_combo = convert_AR_names(df_combo)
 
     # get path folders
     path = os.path.normpath(result_folder)
