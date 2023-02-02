@@ -1,4 +1,6 @@
 from rest_framework.serializers import Serializer, FileField
+from rest_framework import serializers
+from .models import ResultsFolder
 
 
 class UploadSerializer(Serializer):
@@ -6,3 +8,11 @@ class UploadSerializer(Serializer):
 
     class Meta:
         fields = ['file_upload']
+
+
+class ResultsFolderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResultsFolder
+        fields = '__all__'
+
+

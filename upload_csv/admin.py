@@ -1,4 +1,8 @@
 from django.contrib import admin
-from .models import ComboCSVData
+from .models import *
 
-admin.site.register(ComboCSVData)
+admin.site.register(Well)
+admin.site.register(Project)
+admin.site.register(Plate)
+admin.site.register(Sample)
+admin.site.register(Screen)
